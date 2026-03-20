@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Index — syrangg813s7vi-web</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #f0f6fc;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    header p.subtitle {
+      color: #8b949e;
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover {
+      border-color: #58a6ff;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #58a6ff;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .card-title:hover {
+      text-decoration: underline;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: #8b949e;
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .card-desc.empty {
+      font-style: italic;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #238636;
+      color: #fff;
+      border-color: #2ea043;
+    }
+
+    .btn-primary:hover {
+      background: #2ea043;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #c9d1d9;
+      border-color: #30363d;
+    }
+
+    .btn-secondary:hover {
+      background: #30363d;
+    }
+
+    .card-updated {
+      font-size: 0.75rem;
+      color: #6e7681;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: #8b949e;
+      margin: 4rem auto;
+      max-width: 400px;
+    }
+
+    footer {
+      text-align: center;
+      color: #6e7681;
+      font-size: 0.78rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Book Index</h1>
+    <p class="subtitle">All books published by <strong>syrangg813s7vi-web</strong></p>
+  </header>
+
+  <div id="app"></div>
+
+  <footer>Generated at {{GENERATED_AT}}</footer>
+
+  <script>
+    const books = {{BOOKS_JSON}};
+
+    const app = document.getElementById('app');
+
+    if (!books || books.length === 0) {
+      app.innerHTML = '<div class="empty-state"><p>No books found. Tag a repo with the <code>book</code> topic and enable GitHub Pages to list it here.</p></div>';
+    } else {
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      books.forEach(book => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const titleEl = book.pages_url
+          ? `<a class="card-title" href="${book.pages_url}" target="_blank" rel="noopener">${book.name}</a>`
+          : `<span class="card-title" style="color:#8b949e">${book.name}</span>`;
+
+        const desc = book.description
+          ? `<p class="card-desc">${book.description}</p>`
+          : `<p class="card-desc empty">No description provided.</p>`;
+
+        const readBtn = book.pages_url
+          ? `<a class="btn btn-primary" href="${book.pages_url}" target="_blank" rel="noopener">Read Book</a>`
+          : '';
+
+        const sourceBtn = `<a class="btn btn-secondary" href="${book.repo_url}" target="_blank" rel="noopener">View Source</a>`;
+
+        const updated = book.updated_at
+          ? `<div class="card-updated">Updated: ${book.updated_at.slice(0, 10)}</div>`
+          : '';
+
+        card.innerHTML = titleEl + desc + `<div class="card-actions">${readBtn}${sourceBtn}</div>` + updated;
+        grid.appendChild(card);
+      });
+
+      app.appendChild(grid);
+    }
+  </script>
+</body>
+</html>
