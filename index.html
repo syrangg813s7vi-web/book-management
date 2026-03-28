@@ -147,16 +147,30 @@
 
   <div id="app"></div>
 
-  <footer>Generated at 2026-03-28 13:32 UTC</footer>
+  <footer>Generated at 2026-03-28 13:35 UTC</footer>
 
   <script>
-    const books = [{"name": "workplace-communication-methodology", "description": "职场沟通方法论：从认知差异到系统化沟通框架", "pages_url": "https://syrangg813s7vi-web.github.io/workplace-communication-methodology/", "repo_url": "https://github.com/syrangg813s7vi-web/workplace-communication-methodology", "updated_at": "2026-03-20T13:48:47Z"}, {"name": "three-tier-planning-playbook", "description": "", "pages_url": "https://syrangg813s7vi-web.github.io/three-tier-planning-playbook/", "repo_url": "https://github.com/syrangg813s7vi-web/three-tier-planning-playbook", "updated_at": "2026-03-20T04:15:50Z"}, {"name": "feelgood-productivity-book", "description": "", "pages_url": "https://syrangg813s7vi-web.github.io/feelgood-productivity-book/", "repo_url": "https://github.com/syrangg813s7vi-web/feelgood-productivity-book", "updated_at": "2026-03-20T03:24:26Z"}];
-
     const app = document.getElementById('app');
+    let lastBooksSignature = '';
 
-    if (!books || books.length === 0) {
-      app.innerHTML = '<div class="empty-state"><p>No books found. Tag a repo with the <code>book</code> topic and enable GitHub Pages to list it here.</p></div>';
-    } else {
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }[char]));
+    }
+
+    function renderBooks(books) {
+      app.innerHTML = '';
+
+      if (!books || books.length === 0) {
+        app.innerHTML = '<div class="empty-state"><p>No books found. Publish a book repo with GitHub Pages enabled to list it here.</p></div>';
+        return;
+      }
+
       const grid = document.createElement('div');
       grid.className = 'grid';
 
@@ -164,22 +178,27 @@
         const card = document.createElement('div');
         card.className = 'card';
 
+        const safeName = escapeHtml(book.name || '');
+        const safeDescription = escapeHtml(book.description || '');
+        const safePagesUrl = escapeHtml(book.pages_url || '');
+        const safeRepoUrl = escapeHtml(book.repo_url || '');
+
         const titleEl = book.pages_url
-          ? `<a class="card-title" href="${book.pages_url}" target="_blank" rel="noopener">${book.name}</a>`
-          : `<span class="card-title" style="color:#8b949e">${book.name}</span>`;
+          ? `<a class="card-title" href="${safePagesUrl}" target="_blank" rel="noopener">${safeName}</a>`
+          : `<span class="card-title" style="color:#8b949e">${safeName}</span>`;
 
         const desc = book.description
-          ? `<p class="card-desc">${book.description}</p>`
-          : `<p class="card-desc empty">No description provided.</p>`;
+          ? `<p class="card-desc">${safeDescription}</p>`
+          : '<p class="card-desc empty">No description provided.</p>';
 
         const readBtn = book.pages_url
-          ? `<a class="btn btn-primary" href="${book.pages_url}" target="_blank" rel="noopener">Read Book</a>`
+          ? `<a class="btn btn-primary" href="${safePagesUrl}" target="_blank" rel="noopener">Read Book</a>`
           : '';
 
-        const sourceBtn = `<a class="btn btn-secondary" href="${book.repo_url}" target="_blank" rel="noopener">View Source</a>`;
+        const sourceBtn = `<a class="btn btn-secondary" href="${safeRepoUrl}" target="_blank" rel="noopener">View Source</a>`;
 
         const updated = book.updated_at
-          ? `<div class="card-updated">Updated: ${book.updated_at.slice(0, 10)}</div>`
+          ? `<div class="card-updated">Updated: ${escapeHtml(book.updated_at.slice(0, 10))}</div>`
           : '';
 
         card.innerHTML = titleEl + desc + `<div class="card-actions">${readBtn}${sourceBtn}</div>` + updated;
@@ -188,6 +207,37 @@
 
       app.appendChild(grid);
     }
+
+    async function loadBooks() {
+      try {
+        const response = await fetch(`books.json?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load books.json: ${response.status}`);
+        }
+
+        const books = await response.json();
+        const signature = JSON.stringify(books);
+
+        if (signature !== lastBooksSignature) {
+          lastBooksSignature = signature;
+          renderBooks(books);
+        }
+      } catch (error) {
+        if (!lastBooksSignature) {
+          app.innerHTML = '<div class="empty-state"><p>Failed to load book list. Please refresh later.</p></div>';
+        }
+        console.error(error);
+      }
+    }
+
+    loadBooks();
+    setInterval(loadBooks, 30000);
   </script>
 </body>
 </html>

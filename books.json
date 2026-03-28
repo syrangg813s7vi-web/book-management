@@ -1,5 +1,40 @@
 [
   {
+    "name": "betterideas-productivity",
+    "description": "",
+    "pages_url": "https://syrangg813s7vi-web.github.io/betterideas-productivity/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/betterideas-productivity",
+    "updated_at": "2026-03-28T01:15:10Z"
+  },
+  {
+    "name": "chinese-baijiu-complete",
+    "description": "中国白酒完整指南：从认知到品鉴的完整知识体系",
+    "pages_url": "https://syrangg813s7vi-web.github.io/chinese-baijiu-complete/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/chinese-baijiu-complete",
+    "updated_at": "2026-03-28T01:10:57Z"
+  },
+  {
+    "name": "karpathy-llm-book",
+    "description": "从 Andrej Karpathy 的 LLM 讲座中提炼的深度思维框架与工程实践方法论（13章·75案例·中文）",
+    "pages_url": "https://syrangg813s7vi-web.github.io/karpathy-llm-book/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/karpathy-llm-book",
+    "updated_at": "2026-03-24T09:27:25Z"
+  },
+  {
+    "name": "shen-yifei-relaxed-parenting",
+    "description": "松弛育儿：沈奕斐的幸福家庭方法论",
+    "pages_url": "https://syrangg813s7vi-web.github.io/shen-yifei-relaxed-parenting/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/shen-yifei-relaxed-parenting",
+    "updated_at": "2026-03-22T10:43:24Z"
+  },
+  {
+    "name": "shen-yifei-parenting-wisdom",
+    "description": "优势育儿：沈奕斐家庭教育方法论 | 放下焦虑，让孩子在优势中成长",
+    "pages_url": "https://syrangg813s7vi-web.github.io/shen-yifei-parenting-wisdom/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/shen-yifei-parenting-wisdom",
+    "updated_at": "2026-03-22T08:02:41Z"
+  },
+  {
     "name": "workplace-communication-methodology",
     "description": "职场沟通方法论：从认知差异到系统化沟通框架",
     "pages_url": "https://syrangg813s7vi-web.github.io/workplace-communication-methodology/",

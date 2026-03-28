@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate books.json and index.html from GitHub repos tagged with 'book' topic."""
+"""Generate books.json and index.html from published GitHub Pages book repos."""
 
 import json
 import os
@@ -13,13 +13,24 @@ TOPIC = "book"
 BOOKS_JSON = "books.json"
 INDEX_HTML = "index.html"
 TEMPLATE_HTML = "template.html"
+EXCLUDED_REPOS = {
+    "book-management",
+    "books-publication",
+    f"{OWNER}.github.io",
+}
 
 
-def fetch_all_repos(token: str) -> list[dict]:
+def build_headers(token: str | None) -> dict[str, str]:
     headers = {
-        "Authorization": f"token {token}",
         "Accept": "application/vnd.github+json",
     }
+    if token:
+        headers["Authorization"] = f"token {token}"
+    return headers
+
+
+def fetch_all_repos(token: str | None) -> list[dict]:
+    headers = build_headers(token)
     repos = []
     page = 1
     while True:
@@ -35,15 +46,21 @@ def fetch_all_repos(token: str) -> list[dict]:
 
 
 def is_book_repo(repo: dict) -> bool:
+    if repo["name"] in EXCLUDED_REPOS:
+        return False
+
+    if repo.get("private", False) or repo.get("archived", False):
+        return False
+
     topics = repo.get("topics", [])
-    return TOPIC in topics and not repo.get("archived", False)
+    if TOPIC in topics:
+        return True
+
+    return repo.get("has_pages", False)
 
 
-def check_pages(repo_name: str, token: str) -> str | None:
-    headers = {
-        "Authorization": f"token {token}",
-        "Accept": "application/vnd.github+json",
-    }
+def check_pages(repo_name: str, token: str | None) -> str | None:
+    headers = build_headers(token)
     url = f"https://api.github.com/repos/{OWNER}/{repo_name}/pages"
     resp = requests.get(url, headers=headers)
     if resp.status_code == 200:
@@ -51,13 +68,24 @@ def check_pages(repo_name: str, token: str) -> str | None:
     return None
 
 
-def collect_books(token: str) -> list[dict]:
+def get_pages_url(repo: dict, token: str | None) -> str | None:
+    pages_url = check_pages(repo["name"], token)
+    if pages_url:
+        return pages_url
+
+    if repo.get("has_pages", False):
+        return f"https://{OWNER}.github.io/{repo['name']}/"
+
+    return None
+
+
+def collect_books(token: str | None) -> list[dict]:
     repos = fetch_all_repos(token)
     books = []
     for repo in repos:
         if not is_book_repo(repo):
             continue
-        pages_url = check_pages(repo["name"], token)
+        pages_url = get_pages_url(repo, token)
         books.append({
             "name": repo["name"],
             "description": repo.get("description") or "",
@@ -80,11 +108,10 @@ def render_index(books: list[dict], template_path: str) -> str:
 
 def main():
     token = os.environ.get("GITHUB_TOKEN")
-    if not token:
-        print("ERROR: GITHUB_TOKEN environment variable not set.", file=sys.stderr)
-        sys.exit(1)
 
     print(f"Fetching repos for {OWNER}...")
+    if not token:
+        print("WARNING: GITHUB_TOKEN environment variable not set. Falling back to unauthenticated requests.", file=sys.stderr)
     books = collect_books(token)
     print(f"Found {len(books)} book repo(s).")
 
