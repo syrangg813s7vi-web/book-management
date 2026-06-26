@@ -1,5 +1,33 @@
 [
   {
+    "name": "digital-energy-handbook",
+    "description": "数字能源行业知识手册：面向软件工程师的能源行业自学与回查手册（7 部分 · 33 章 · 5 附录）",
+    "pages_url": "https://syrangg813s7vi-web.github.io/digital-energy-handbook/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/digital-energy-handbook",
+    "updated_at": "2026-06-26T01:38:28Z"
+  },
+  {
+    "name": "dankoe-content-mastery",
+    "description": "内容变现的艺术：Dan Koe一人公司完全指南 | 基于155个YouTube视频字幕内容整理的完整方法论书籍",
+    "pages_url": "https://syrangg813s7vi-web.github.io/dankoe-content-mastery/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/dankoe-content-mastery",
+    "updated_at": "2026-06-19T14:37:05Z"
+  },
+  {
+    "name": "oh-my-codex-learning",
+    "description": "Browsable learning site for studying oh-my-codex architecture",
+    "pages_url": "https://syrangg813s7vi-web.github.io/oh-my-codex-learning/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/oh-my-codex-learning",
+    "updated_at": "2026-04-27T10:01:20Z"
+  },
+  {
+    "name": "dankoe-content-mastery-v2",
+    "description": "Dan Koe内容创作方法论：一人企业与创作者的完整系统",
+    "pages_url": "https://syrangg813s7vi-web.github.io/dankoe-content-mastery-v2/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/dankoe-content-mastery-v2",
+    "updated_at": "2026-03-31T03:09:05Z"
+  },
+  {
     "name": "majiangbo-political-economic-2025",
     "description": "马江博·政经参考2025：时代洪流中的决策坐标 - 系统梳理中国政治经济核心趋势与个人决策框架",
     "pages_url": "https://syrangg813s7vi-web.github.io/majiangbo-political-economic-2025/",
