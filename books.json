@@ -1,10 +1,17 @@
 [
   {
+    "name": "energy-handbook",
+    "description": "中文能源知识库：Markdown 内容、Vue 交互组件与独立 HTML 动画",
+    "pages_url": "https://energybook.foxtiny.com/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/energy-handbook",
+    "updated_at": "2026-07-23T08:25:15Z"
+  },
+  {
     "name": "digital-energy-handbook",
     "description": "数字能源行业知识手册：面向软件工程师的能源行业自学与回查手册（7 部分 · 33 章 · 5 附录）",
     "pages_url": "https://syrangg813s7vi-web.github.io/digital-energy-handbook/",
     "repo_url": "https://github.com/syrangg813s7vi-web/digital-energy-handbook",
-    "updated_at": "2026-06-26T01:38:28Z"
+    "updated_at": "2026-06-26T03:03:27Z"
   },
   {
     "name": "dankoe-content-mastery",
