@@ -24,7 +24,7 @@ jobs:
       - name: Generate index
         run: python generate.py
         env:
-          GITHUB_TOKEN: ${{ secrets.BOOKS_INDEX_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Commit and push
         run: |
