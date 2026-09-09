@@ -1,5 +1,12 @@
 [
   {
+    "name": "multica-architecture-analysis",
+    "description": "Independent full-repository architecture analysis of Multica",
+    "pages_url": "https://syrangg813s7vi-web.github.io/multica-architecture-analysis/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/multica-architecture-analysis",
+    "updated_at": "2026-09-08T22:24:52Z"
+  },
+  {
     "name": "notes-pages",
     "description": "Generated output for a personal notes site",
     "pages_url": "https://syrangg813s7vi-web.github.io/notes-pages/",
