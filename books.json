@@ -1,5 +1,12 @@
 [
   {
+    "name": "energy-handbook",
+    "description": "中文能源知识库：Markdown 内容、Vue 交互组件与独立 HTML 动画",
+    "pages_url": "https://energybook.foxtiny.com/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/energy-handbook",
+    "updated_at": "2026-09-11T09:56:48Z"
+  },
+  {
     "name": "multica-architecture-analysis",
     "description": "Independent full-repository architecture analysis of Multica",
     "pages_url": "https://syrangg813s7vi-web.github.io/multica-architecture-analysis/",
@@ -12,13 +19,6 @@
     "pages_url": "https://syrangg813s7vi-web.github.io/notes-pages/",
     "repo_url": "https://github.com/syrangg813s7vi-web/notes-pages",
     "updated_at": "2026-09-07T06:17:22Z"
-  },
-  {
-    "name": "energy-handbook",
-    "description": "中文能源知识库：Markdown 内容、Vue 交互组件与独立 HTML 动画",
-    "pages_url": "https://energybook.foxtiny.com/",
-    "repo_url": "https://github.com/syrangg813s7vi-web/energy-handbook",
-    "updated_at": "2026-09-06T13:00:15Z"
   },
   {
     "name": "dankoe-content-mastery",
