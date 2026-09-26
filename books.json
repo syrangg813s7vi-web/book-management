@@ -1,5 +1,12 @@
 [
   {
+    "name": "dankoe-content-mastery",
+    "description": "内容变现的艺术：Dan Koe一人公司完全指南 | 基于155个YouTube视频字幕内容整理的完整方法论书籍",
+    "pages_url": "https://syrangg813s7vi-web.github.io/dankoe-content-mastery/",
+    "repo_url": "https://github.com/syrangg813s7vi-web/dankoe-content-mastery",
+    "updated_at": "2026-09-26T13:59:28Z"
+  },
+  {
     "name": "energy-handbook",
     "description": "中文能源知识库：Markdown 内容、Vue 交互组件与独立 HTML 动画",
     "pages_url": "https://energybook.foxtiny.com/",
@@ -19,13 +26,6 @@
     "pages_url": "https://syrangg813s7vi-web.github.io/notes-pages/",
     "repo_url": "https://github.com/syrangg813s7vi-web/notes-pages",
     "updated_at": "2026-09-07T06:17:22Z"
-  },
-  {
-    "name": "dankoe-content-mastery",
-    "description": "内容变现的艺术：Dan Koe一人公司完全指南 | 基于155个YouTube视频字幕内容整理的完整方法论书籍",
-    "pages_url": "https://syrangg813s7vi-web.github.io/dankoe-content-mastery/",
-    "repo_url": "https://github.com/syrangg813s7vi-web/dankoe-content-mastery",
-    "updated_at": "2026-08-20T17:18:18Z"
   },
   {
     "name": "digital-energy-handbook",
